@@ -1,4 +1,3 @@
-/* Type de classes */
 class Station {
     constructor(name, line, stationnumber) {
         this.nomS = name;
@@ -9,9 +8,11 @@ class Station {
     getNom() {
         return this.nomS;
     }
+	
     getLigne() {
         return this.ligneS;
     }
+	
     getNo() {
         return this.ligneS;
     }
@@ -36,24 +37,23 @@ class Partie {
             stations.pop();
             partie.noEnCours = Math.floor(Math.random() * Math.floor(stations.length));
             console.log(partie.noEnCours + " = " + stations[partie.noEnCours].nomS + " ?");
-            $("#question").html("<h1 class='question'>Où se situe...</h1> <h1  class='station'>" + stations[partie.noEnCours].nomS + "</h1><h1 class='question'>?</h1>");
-        } else {
+            $(".question-block").html("<h1 class='question'>Où se situe la station...</h1><h1 class='station'>" + stations[partie.noEnCours].nomS + "</h1><h1 class='question'>?</h1>");
+        } 
+		else {
             finPartie();
-            //$("#question").html("<center><button class='action' id='rejouer'>Rejouer</button></center>");
+            //$(".question-block").html("<center><button class='action' id='rejouer'>Rejouer</button></center>");
             Dialog.alert('Fin de partie', 'Vous avez fini ' + partie.login + ', Voulez vous sauvegarder votre score(' + this.scoreEnCours + ')')
                 .then(function() {
                     $.ajax({
                         url: './C/traitement.php',
                         type: 'GET',
                         data: 'action=setScore&pseudo=' + partie.login + '&score=' + partie.scoreEnCours,
-
                         dataType: 'html'
                     });
                     init();
                 }, function() {
                     init();
                 });
-
         }
     }
 
@@ -62,40 +62,45 @@ class Partie {
             Dialog.alert('Erreur', "Vous n'avez pas encore commencé la partie");
             return;
         }
+		
         if (stations[this.noEnCours].nomS == id) {
-
             Dialog.alert("Bonne réponse", "pour " + stations[partie.noEnCours].nomS);
             partie.scoreEnCours++;
-        } else {
+        } 
+		else {
             Dialog.alert("Mauvaise réponse", "pour " + stations[partie.noEnCours].nomS);
         }
+		
         this.changerQuestion();
         this.noTour++;
         this.actualiserAffichage();
     }
+	
     actualiserAffichage() {
-        $("#score").html("<h2>Score:</h2><br />" + this.scoreEnCours + " / " + (this.noTour - 1));
-        $("#tour").html("<h2>Tour:</h2><br />" + this.noTour + " sur " + this.nbTourMax);
+        $("#score").html('<h2 class="info-text">Score</h2>' + '<h6>' + this.scoreEnCours + " / " + (this.noTour - 1) + "<br/>" + '</h6>');
+        $("#tour").html('<h2 class="info-text">Tour</h2>' + '<h6>' + this.noTour + " sur " + this.nbTourMax + '</h6>');
     }
-
 }
 
-/* Données */
+/* Données pour le jeu */
 var partie;
 var stations = [];
 
-
-/* CREATION CARTE */
-function chargerCarteJeu() {
+/* Chargement de la carte */
+function loadMap() {
     partie.commence = false;
-    $(".infoJeu").css({ 'background-color': 'rgba(0, 0, 0, 0.5)', 'border-radius': ' 10px', 'text-align': 'center', 'border': '3px solid #fff', 'color': '#fff' });
-    var map = L.map('maDiv', {
+    $(".data-game").css({'background-color': 'rgba(0, 0, 0, 0.5)', 'border-radius': ' 10px', 'text-align': 'center', 'border': '3px solid #fff', 'color': '#fff' });
+    $("#map").css({'border': '1px solid black', 'border-radius': '5px'});
+	
+	var map = L.map('map', {
         zoomDelta: 0.9,
         zoomSnap: 0
     }).setView([48.858376, 2.294442], 12);
-    map.options.minZoom = 12;
+    
+	map.options.minZoom = 12;
     map.options.maxZoom = 17;
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png').addTo(map);
+	
     $.ajax({
         url: './C/traitement.php',
         data: 'action=getGEOJSON&ligne=7',
@@ -104,76 +109,77 @@ function chargerCarteJeu() {
         success: function(data) {
             var layerGroup = L.geoJson(data, {
                 onEachFeature: function(feature, layer) {
-                    layer.bindPopup('<h1 class="station">???' /* + feature.properties.nomlong */ + '</h1>' + afficherLignes(feature.properties.res_com) + '</br><button class="action validerchoix" type="button" id="' + feature.properties.nomlong + '" onClick="partie.verifier(this.id)">Valider</button>');
+                    layer.bindPopup('<h1 class="station">???' /* + feature.properties.nomlong */ + '</h1>' + displayLines(feature.properties.res_com) + '</br><button class="action validerchoix" type="button" id="' + feature.properties.nomlong + '" onClick="partie.verifier(this.id)">Valider</button>');
                     stations.push(new Station(feature.properties.nomlong, feature.properties.res_com, feature.properties.gares_id));
                 }
             }).addTo(map);
         },
-        error: function(request, error) { // Info Debuggage si erreur         
+        error: function(request, error) { // Pour débugger s'il y a des erreurs       
             console.log("Erreur : responseText: " + request.responseText);
         },
     });
-    $("#question").html("<button id='start' class='action' >Commencer La Partie</button>");
-    $("#start").click(partie.changerQuestion);
+	
+    $(".question-block").html("<button class='action startGame'>Commencer une partie</button>");
+    $(".startGame").click(partie.changerQuestion);
 }
 
-function afficherLignes(propriete) {
+function displayLines(propriete) {
     var result = propriete.split("/");
     var retour = "";
+	
     result.forEach(function(obj) {
-        retour += "<img class='ligne' src='./V/images/lignes/" + obj.trim() + ".png' alt=" + obj.trim() + "/>";
+        retour += "<img class='ligne' src='./V/css/img/lignes/" + obj.trim() + ".png' alt=" + obj.trim() + "/>";
     });
+	
     return retour;
 }
 
-function afficherstations() {
+function displayStations() {
     console.log(stations);
 }
 
 function connexion() {
     if (login = " ") {
-        Dialog.prompt('Id', 'Donne nous ton pseudo')
-            .then(function(value) {
-                if(value != ""){
-                    partie = new Partie($('#tbNbTour').val());
-                    partie.login = value;
-                    console.log('ton pseudo est : ' + partie.login);
-                    chargerCarteJeu();
-                    //AJOUTER VERIFICATION PSEUDO ET CHARGER LE MDP DANS UNE VARIABLE
-                }
-                else {
-                    alert("Entrez un nom");
-                }
-            }, function() {
-                console.log("You clicked Cancel");
-            });
+        Dialog.prompt('Id', 'Donne nous ton pseudo').then(function(value) {
+			if (value != ""){
+				partie = new Partie($('#tbNbTour').val());
+				partie.login = value;
+				console.log('ton pseudo est : ' + partie.login);
+				loadMap();
+				//AJOUTER VERIFICATION PSEUDO ET CHARGER LE MDP DANS UNE VARIABLE
+			}
+			else {
+				alert("Entrez un nom");
+			}
+		}, function() {
+			console.log("You clicked Cancel");
+		});
     }
 }
 
-
-
 function finPartie() {
-    $('#maDiv').html("");
+    $('#map').html("");
 }
 
 $(document).ready(function() {
     finPartie();
-    $("#rejouer").click(function() { window.location.replace('index.php?p=jeu'); });
-    $(".infoJeu").css({});
-    $("#question").html("<center><input type='number' id='tbNbTour' name='tbNbTour' step='1' value='10' min='3' max='300'><br/><button class='action' id='connexion'>Commencer</button></center>");
-    $("#connexion").click(function() { nbPartieCorrect() })
-        /*afficherstations();
-        $("#afficher").click(chargerCarteJeu);*/
+    $("#rejouer").click(function() { 
+		window.location.replace('index.php?p=jeu'); 
+	});
+    $(".data-game").css({});
+    $(".question-block").html("<center><strong>Définissez le nombre de tours : </strong><input type='number' id='tbNbTour' name='tbNbTour' step='1' value='10' min='3' max='300'><br/><button class='action connexion'>Commencer</button></center>");
+    $(".connexion").click(function() { 
+		nbPartieCorrect();
+	})
+	/* displayStations();
+	$("#afficher").click(loadMap);*/
 });
-
-// Remplacé par le document ready
-
-/*INIT*/
 
 function nbPartieCorrect() {
     if (tbNbTour.value > 2) {
         connexion();
-    } else {
+    } 
+	else {
         Dialog.alert('Nombre de partie incorrect', "Vous devez jouer au moins 3 tours.");
     }
 }

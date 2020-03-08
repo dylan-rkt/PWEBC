@@ -12,15 +12,15 @@
 				$page = "accueil";
 			}
 			
-			switch ($page){
+			switch ($page) {
 				case 'accueil':
 					require('V/header/navAccueil.tpl');
 					break;
-				case 'classement':
-					require('V/header/navClassement.tpl');
-					break;
 				case 'jeu':
 					require('V/header/navJeu.tpl');
+					break;	
+				case 'classement':
+					require('V/header/navClassement.tpl');
 					break;
 				default: 
 					require('V/header/navAccueil.tpl');
@@ -36,18 +36,17 @@
 			
 				<?php
 					switch ($page) {
-						case 'jeu':
-							require('V/jeu.tpl');
-							break;
-						
 						case 'accueil':
 							require('V/accueil.tpl');
+							break;
+						case 'jeu':
+							require('V/jeu.tpl');
 							break;
 						case 'classement':
 							require('V/classement.tpl');
 							break;
 						default:
-							require('V/404?tpl');
+							require('V/error404.tpl');
 					}
 				?>
 				

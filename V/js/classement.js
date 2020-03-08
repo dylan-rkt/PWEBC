@@ -1,4 +1,3 @@
-/* CLASSES  */
 class Joueur {
     constructor(nPseudo, nScore, nNbPartie) {
         this.Pseudo = nPseudo;
@@ -7,18 +6,7 @@ class Joueur {
     }
 }
 
-/* DONNEES */
-
 var joueurs = [];
-
-
-
-
-/* FONCTIONS */
-
-
-
-
 
 function MAJClassement() {
     joueurs = [];
@@ -35,7 +23,7 @@ function MAJClassement() {
                 joueurs.push(j);
             });
         },
-        error: function(request, error) { // Info Debuggage si erreur         
+        error: function(request, error) { // Pour débugger s'il y a une erreur       
             alert("Erreur : responseText: " + request.responseText);
         },
     });
@@ -43,19 +31,24 @@ function MAJClassement() {
 
 function afficherClassement() {
     chaine = "<table><thead><tr><th>No</th><th>Pseudo</th><th>Score</th><th>Nombre de partie</th></tr></thead><tbody>";
-    for (var i = 0; i < joueurs.length; i++) {
+    
+	for (var i = 0; i < joueurs.length; i++) {
         chaine += "<tr><td>#" + (i + 1) + "</td><td>" + joueurs[i].Pseudo + "</td><td>" + joueurs[i].Score + "</td><td>" + joueurs[i].NbPartie + "</td></tr>";
     }
+	
     chaine += "</tbody></table>";
     $("#tabClassement").html(chaine);
 }
 
 MAJClassement();
+
 $("#rechargerClassement").click(function() {
     chaine = "<table><thead><tr><th width='10%'>No</th><th width='30%'>Pseudo</th><th width='20%'>Score</th><th width='10%'>Nombre de partie</th></tr></thead><tbody>";
-    for (var i = 0; i < joueurs.length; i++) {
+    
+	for (var i = 0; i < joueurs.length; i++) {
         chaine += "<tr><td class='noClassement'>#" + (i + 1) + "</td><td>" + joueurs[i].Pseudo + "</td><td>" + joueurs[i].Score + "</td><td>" + joueurs[i].NbPartie + "</td></tr>";
     }
+	
     chaine += "</tbody></table>";
     $("#tabClassement").html(chaine);
 });

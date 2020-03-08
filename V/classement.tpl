@@ -2,5 +2,4 @@
 <button id="rechargerClassement" class="action">Afficher</button>
 <div id="tabClassement"></div>
 
-
-<script src="./V/style/classement.js" type="text/javascript"></script></center>
+<script type="text/javascript" src="./V/js/classement.js"></script></center>

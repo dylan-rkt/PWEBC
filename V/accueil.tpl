@@ -1,19 +1,31 @@
 <div class="block">
+
 	<h2>Bienvenue dans le jeu Subway Rush !</h2>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 itemBox" id="boxJeu">
+	
+    <div id="game" class="col-xs-12 col-sm-6 col-md-6 col-lg-6 menu-item">
+	
         <h3>Jeu</h3>
         <p>Cliquez ici pour jouer</p>
+		
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 itemBox" id="boxClassement">
+	
+    <div id="ranking" class="col-xs-12 col-sm-6 col-md-6 col-lg-6 menu-item">
+	
         <h3>Classement</h3>
         <p>Cliquez ici pour consulter le classement</p>
+		
     </div>
+	
 </div>
+
 <script>
-$("#boxJeu").click(function(){
-    window.location.href = "./index.php?p=jeu";
+
+	$("#game").click(function(){
+		window.location.href = "./index.php?p=jeu";
     });  
-$("#boxClassement").click(function(){
-    window.location.href = "./index.php?p=classement";
+	
+	$("#ranking").click(function(){
+		window.location.href = "./index.php?p=classement";
     });
+	
 </script>
