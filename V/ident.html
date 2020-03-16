@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Identification</title>
+    <link rel="stylesheet" href="./V/style/bootstrap-css/bootstrap.css">
+    <link rel="stylesheet" href="./V/style/style.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col no-padding text-center">
+                <div id="exp" class="jumbotron">
+                    <h1><strong>Authentification</strong></h1></br>
+                </div>
+                <form class="align-content-center" action="index.php?controle=ident&action=identification" method="post">
+                    <div class="form-row align-items-center">
+                        <div class="col-2 offset-4">
+                            <label class="sr-only" for="inlineFormInputName">Nom</label>
+                            <input type="text" name='login' class="form-control" id="inlineFormInputName"
+                                placeholder="nom" required>
+                        </div>
+                        <div class="col-2">
+                            <label class="sr-only" for="inlineFormInputName">Mot de passe</label>
+                            <input type="password" name='password' class="form-control" id="inlineFormInputName"
+                                placeholder="mot de passe" required>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-row align-items-center">
+                        <div class="col-2 offset-5">
+                            <button class="btn btn-success btn-primary" type="submit">Me connecter</button>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                <div> <?php echo $msg ?> </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="./V/js/bootstrap-js/bootstrap.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
