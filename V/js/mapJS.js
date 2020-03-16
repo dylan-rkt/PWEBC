@@ -13,7 +13,7 @@ window.onload = function () {
 	var coordsGPS = new Array();
 	currentLocation();
 
-	$("#macdo").click(function () {
+	$("#afficher").click(function () {
 		$.ajax({
 			url: "./V/js/fr_crous_restauration_france_entiere.geojson",
 			dataType: "json",

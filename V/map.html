@@ -1,47 +1,43 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="fr">
-<head>
-	<meta charset="utf-8">
-	<title>Les toilettes de Paris</title>
 
-	<link rel="stylesheet" href="./V/style/bootstrap-css/bootstrap.css">
+<head>
+
+	<title>Crous'Finder</title>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="author" content="Julien ZHANG, Dylan RAKOTOARIVELO - Groupe 201"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+	<link rel="icon" type="image/png" href="./V/style/img/crous-finder-icon.png"/>
 	<link rel="stylesheet" href="./V/style/style.css">
 	<link rel="stylesheet" href="./V/style/accueil.css">
-	<script src="https://ignf.github.io/geoportal-access-lib/latest/dist/GpServices.js"></script>
-	<script src="https://ignf.github.io/geoportal-access-lib/latest/dist/GpServices-src.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-		integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-		crossorigin="" />
-	<link rel="stylesheet" href="./V/style/leaflet-routing-machine-css/leaflet-routing-machine.css" />
-
-
-
-</head>
-
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-12 ">
-				<h1 class="text-center"> MacRush </h1>
-				<div id="mapid"></div>
-				<button id="macdo" type="button" class="btn btn-danger">Afficher les Restaurants Macdonald's</button>
-				</br>
-				<p id="desc"> Cliquez sur un icone pour créer un itinéraire </p>
-			</div>
-		</div>
-	</div>
-
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
+	<link rel="stylesheet" href="./V/style/leaflet-routing-machine-css/leaflet-routing-machine.css"/>
 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-		integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-		crossorigin=""></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script src="./V/js/bootstrap-js/bootstrap.js"></script>
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://ignf.github.io/geoportal-access-lib/latest/dist/GpServices.js"></script>
+	<script src="https://ignf.github.io/geoportal-access-lib/latest/dist/GpServices-src.js"></script>
+	
+</head>
+
+<body>
+	<div class="row">
+		<div class="col-2 overlay pr-0 justify-content-center">
+			<button id="afficher" type="button" class="btn btn-danger col-10">Afficher Crous</button>
+			</br>
+			<p id="desc" class="col-12"> Cliquez sur un icone pour créer un itinéraire </p>
+		</div>
+		<div class="col-10 pl-0">
+			<div id="mapid"></div>
+		</div>
+	</div>
+
 	<script src="./V/js/leaflet.ajax.min.js"></script>
 	<script src="./V/js/mapJS.js"></script>
 

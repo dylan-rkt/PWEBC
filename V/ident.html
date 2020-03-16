@@ -1,32 +1,68 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="fr">
 
 <head>
-    <title>Mcdo Rush</title>
+
+    <title>Crous'Finder</title>
 	
  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="author" content="Julien ZHANG, Dylan RAKOTOARIVELO - Groupe 201" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
-	<link rel="icon" type="image/png" href="./V/css/img/subway-icon.png"/>
+	<link rel="icon" type="image/png" href="./V/style/img/crous-finder-icon.png"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 	<link rel="stylesheet" href="./V/style/style.css">
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-	
+
 </head>
 
 <body>
+
+	<header>
+
+		<nav class="navbar">
+		
+			<div class="logo">
+			
+				<a href="./index.php"><img src="./V/img/crous-finder-logo.png"/></a>
+				
+			</div>
+		
+			<ul class="nav nav-pills nav-fill">
+			
+				<li class="nav-item">
+				
+					<a class="nav-link active" href="#">on fait</a>
+					
+				</li>
+				
+				<li class="nav-item">
+				
+					<a class="nav-link" href="#">quand</a>
+					
+				</li>
+				
+				<li class="nav-item">
+				
+					<a class="nav-link" href="#">communication ?</a>
+					
+				</li>
+				
+			</ul>
+			
+		</nav>
+		
+	</header>
 		
 	<div class="background">
 
 		<div class="container login-container">
 	
-			<div class="row justify-content-center">
+			<div class="column">
 
 				<div class="col-md-7 login-form login-form-user">
 			
@@ -39,27 +75,42 @@
 					<form id="identification" class="offset-1 col-10" action="index.php?controle=ident&action=identification" method="post">
 
 						<div class="form-group">
+							
 							<label class="sr-only" for="inlineFormInputName">Nom</label>
+						
 							<input type="text" name='login' class="form-control" id="inlineFormInputName" placeholder="nom" required>
+						
 						</div>
 						
 						<div class="form-group">
+							
 							<label class="sr-only" for="inlineFormInputName">Mot de passe</label>
+							
 							<input type="password" name='password' class="form-control" id="inlineFormInputName" placeholder="mot de passe" required>
 						</div>
+						
 
 						<div class="form-group">
+						
 							<button class="btn btn-success btn-primary btnSubmit" type="submit">Me connecter</button>
+						
 						</div>
 						
 						<div id="lock-modal"></div>
-						<div id="loading-circle"></div>
 						
+						<div class="lds-ring">
+						
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							
+						</div>
+
 					</form>
 
-					
-
 				</div>
+				
 			</div>
 
 		</div>
@@ -81,42 +132,7 @@
 
 	</div>
 	
-	<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-	
-	<script>
-	
-		$(document).ready(function() {
-  const lockModal = $("#lock-modal");
-  const loadingCircle = $("#loading-circle");
-  const form = $("#identification");
-
-
-  form.on('submit', function() {
-    const firstname = $("input[name=login]").val();
-    const lastname = $("input[name=password]").val();
-
-    lockModal.css("display", "block");
-    loadingCircle.css("display", "block");
-
-    form.children("input").each(function() {
-      $(this).attr("readonly", true);
-    });
-
-    setTimeout(function() {
-      // re-enable the form
-      lockModal.css("display", "none");
-      loadingCircle.css("display", "none");
-
-      form.children("input").each(function() {
-        $(this).attr("readonly", false);
-      });
-    }, 3000);
-  });
-
-});
-	
-	</script>
-
+	<script type="text/javascript" src="./V/js/ident.js"></script>
 
 </body>
 
