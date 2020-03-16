@@ -2,7 +2,7 @@ window.onload = function () {
 	alert("N'oubliez pas d'activer la geolocalisation !")
 	//Chargement initial de la MAP
 
-	var map = L.map('mapid').setView([48.85602736476408, 2.3498749732061697], 10);
+	var map = L.map('mapid').setView([48.798801, 2.16592], 10);
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		maxZoom: 18,
@@ -15,23 +15,64 @@ window.onload = function () {
 
 	$("#macdo").click(function () {
 		$.ajax({
-			url: "./V/js/metro.geojson",
+			url: "./V/js/fr_crous_restauration_france_entiere.geojson",
 			dataType: "json",
 			success: function (data) {
 
 				L.geoJson(data, {
 					pointToLayer: function (feature, latlng) {
-						var smallIcon = L.icon({
-							iconUrl: './V/img/icon.png',
-							iconSize: [20, 20]
-						});
+						var smallIcon;
+						if(feature.properties.type == "Restaurant") {
+							smallIcon = L.icon({
+								iconUrl: './V/img/restaurant.png',
+								iconSize: [30, 30]
+							});
+						}
+						else if (feature.properties.type == "Caf\u00e9t\u00e9ria"){
+							smallIcon = L.icon({
+								iconUrl: './V/img/cafetaria.png',
+								iconSize: [30, 30]
+							});
+						}
+						else if (feature.properties.type == "Foodtruck"){
+							smallIcon = L.icon({
+								iconUrl: './V/img/foodtruck.png',
+								iconSize: [40, 40]
+							});
+						}
+						else if (feature.properties.type == "\u00e9picerie"){
+							smallIcon = L.icon({
+								iconUrl: './V/img/epicerie.png',
+								iconSize: [40, 40]
+							});
+						}
+						else if (feature.properties.type == "Sandwicherie"){
+							smallIcon = L.icon({
+								iconUrl: './V/img/sandwich.png',
+								iconSize: [30, 30]
+							});
+						}
+						else if (feature.properties.type == "Brasserie"){
+							smallIcon = L.icon({
+								iconUrl: './V/img/brasserie.png',
+								iconSize: [30, 30]
+							});
+						}
+						else {
+							smallIcon = L.icon({
+								iconUrl: './V/img/crous.png',
+								iconSize: [45, 30]
+							});
+						}
 						return L.marker(latlng, {icon: smallIcon});
 
 					}, onEachFeature: function (feature, layer) {
 						layer.bindPopup(
 							"<input type='hidden' name='long' value=" + feature.geometry.coordinates[0] + " />" +
 							"<input type='hidden' name='lat' value=" + feature.geometry.coordinates[1] + " />" +
-							"<p class=station>" + feature.properties.nom_gare + "</p>" +
+							"<p class=title>" + feature.properties.title + " (" + feature.properties.type + ")</p>" +
+							"<p>" + feature.properties.contact + "</p>" +
+							"<img class=image src=" + feature.properties.photo + " alt=\" Photo indisponible\">" +
 							"<input type='hidden' name='long' value=" + feature.geometry.coordinates[0] + " />" +
 							"<input type='hidden' name='lat' value=" + feature.geometry.coordinates[1] + " />"
 						);
@@ -94,7 +135,7 @@ window.onload = function () {
 					route = L.geoJson(result.routeGeometry);
 					route.addTo(map);
 				},
-				onFailure: function(error) {
+				onFailure: function(e) {
 					alert("Aucun itinéraire n'a été trouvé !");
 				}
 			});
