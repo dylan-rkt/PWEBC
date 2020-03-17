@@ -109,10 +109,17 @@ window.onload = function () {
 		}
 	}
 
+	var graph;
+	$("select#graph").change(function(){
+		graph = $(this).children("option:selected").val();
+    });
+
 	var route;
 	function go(lat1,lon1,lat3,lon3) {
-		if(route != null)
+		var info = $("#info");
+		if(route != null) {
 			route.remove();
+		}
 		try {
 			Gp.Services.route({
 				startPoint: {
@@ -123,7 +130,7 @@ window.onload = function () {
 					x: lon3,
 					y: lat3
 				},
-				graph: "Pieton",
+				graph: graph,
 				routePreference: "fastest",
 				apiKey: "jhyvi0fgmnuxvfv0zjzorvdn",
 				onSuccess: function(result) {
@@ -131,7 +138,7 @@ window.onload = function () {
 					var obj = JSON.parse(json);
 					var distance = obj.totalDistance;
 					var min = Math.floor(obj.totalTime/60);
-					alert(min + " min \n" + distance);
+					info.html("Temps estimé : " + min + " min </br>Distance : " + distance);
 					route = L.geoJson(result.routeGeometry);
 					route.addTo(map);
 				},

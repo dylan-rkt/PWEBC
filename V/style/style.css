@@ -290,6 +290,8 @@ nav {
 	z-index: 1000;
 	background: whitesmoke;
 	box-shadow: 0 0 15px 0 black;
+	text-align: center;
+	margin-left: 5rem !important;
 }
 
 .mylocation {
@@ -321,6 +323,12 @@ nav {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.image {
+	width: 300px;
+	height: 300px;
+	object-fit: cover;
 }
 
 #lock-modal {
