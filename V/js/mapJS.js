@@ -72,7 +72,7 @@ window.onload = function () {
 							"<input type='hidden' name='lat' value=" + feature.geometry.coordinates[1] + " />" +
 							"<p class=title>" + feature.properties.title + " (" + feature.properties.type + ")</p>" +
 							"<p>" + feature.properties.contact + "</p>" +
-							"<img class=image src=" + feature.properties.photo + " alt=\" Photo indisponible\">" +
+							"<img class=image src=" + feature.properties.photo + " alt=\" Photo indisponible\" style=\"width:100%\">" +
 							"<input type='hidden' name='long' value=" + feature.geometry.coordinates[0] + " />" +
 							"<input type='hidden' name='lat' value=" + feature.geometry.coordinates[1] + " />"
 						);
@@ -109,7 +109,7 @@ window.onload = function () {
 		}
 	}
 
-	var graph;
+	var graph = "Voiture";
 	$("select#graph").change(function(){
 		graph = $(this).children("option:selected").val();
     });

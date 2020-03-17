@@ -1,0 +1,37 @@
+* {
+	font-family: 'Titillium Web', sans-serif;
+}
+
+body {
+	transition: background-color 0.5s;
+}
+
+.sidemenu {
+	height: 100%;
+	width: 17rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: whitesmoke;
+	margin-left: -17rem;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+
+.main {
+	transition: 0.5s;
+	padding-left: 50px;
+}
+
+.expand-arrow {
+	transition: 0.5s;
+	position: fixed;
+	bottom: 50%;
+}
+
+@media (min-width: 768px) {
+	.col-2 {
+		max-width: 15% !important;
+	}
+}
