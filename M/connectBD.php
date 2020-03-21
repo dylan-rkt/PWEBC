@@ -1,6 +1,6 @@
 ﻿<?php
 	$hostname = "localhost";
-	$base= "mcdo";
+	$base= "projetpweb";
 	$loginBD= "root";
 	$passBD= "";
 	try {
