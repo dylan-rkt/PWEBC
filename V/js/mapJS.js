@@ -18,7 +18,6 @@ window.onload = function () {
 			url: "./V/js/fr_crous_restauration_france_entiere.geojson",
 			dataType: "json",
 			success: function (data) {
-
 				L.geoJson(data, {
 					pointToLayer: function (feature, latlng) {
 						var smallIcon;
@@ -83,7 +82,6 @@ window.onload = function () {
 				alert(xhr.statusText)
 			}
 		});
-
 	});
 	
 	map.on('popupopen', function (e) {
@@ -94,13 +92,15 @@ window.onload = function () {
 
 	function currentLocation() {
 		var defaultLocation = ["48.798801","2.16592"];
+		
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition((function (position) {
+			navigator.geolocation.getCurrentPosition((function(position) {
 				L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
 				coordsGPS[0] = position.coords.latitude;
 				coordsGPS[1] = position.coords.longitude;
 			}));
-		} else {
+		} 
+		else {
 			alert("Votre géolocalisation est désactivé ! \n" + 
 			"L'IUT Paris Descartes sera donc votre pseudo localisation.")
 			L.marker([defaultLocation[0],defaultLocation[1]]).addTo(map);
@@ -110,16 +110,20 @@ window.onload = function () {
 	}
 
 	var graph = "Voiture";
+	
 	$("select#graph").change(function(){
 		graph = $(this).children("option:selected").val();
     });
 
 	var route;
+	
 	function go(lat1,lon1,lat3,lon3) {
 		var info = $("#info");
-		if(route != null) {
+		
+		if (route != null) {
 			route.remove();
 		}
+		
 		try {
 			Gp.Services.route({
 				startPoint: {
@@ -146,9 +150,9 @@ window.onload = function () {
 					alert("Aucun itinéraire n'a été trouvé !");
 				}
 			});
-			} catch (e) {
-				console.log(e);
-			}
+		}
+		catch (e) {
+			console.log(e);
+		}
 	}
-
 }

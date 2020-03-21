@@ -2,5 +2,5 @@
 
 function afficher()
 {
-    require("./V/map.html");
+    require("./V/map.tpl");
 }

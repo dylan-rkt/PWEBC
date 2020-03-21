@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	const lockModal = $("#lock-modal");
+	const blocklocker = $("#block-lock");
 	const loadingCircle = $(".lds-ring");
 	const form = $("#identification");
 
@@ -8,10 +8,10 @@ $(document).ready(function() {
 		var time = 3000;
 		var self = this;
 		
-		const firstname = $("input[name=login]").val();
-		const lastname = $("input[name=password]").val();
+		const login = $("input[name=login]").val();
+		const pwd = $("input[name=password]").val();
 
-		lockModal.css("display", "block");
+		blocklocker.css("display", "block");
 		loadingCircle.css("display", "inline-block");
 
 		form.children("input").each(function() {
