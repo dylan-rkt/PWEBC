@@ -1,3 +1,11 @@
+body {
+	background: linear-gradient(90deg, #013896, #ffffff, #cf142b);
+}
+
+#desc {
+	font-size: 20px;
+}
+
 .image {
 	width: 100%;
 	object-fit: cover;
@@ -130,12 +138,16 @@ nav {
 }
 
 .login-form {
-    padding: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-right: 1%;
+    padding-left: 1%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 	z-index: 2;
 	background: linear-gradient(90deg, rgb(204, 204, 196) 0%, rgb(200, 218, 225) 0%, rgb(224, 227, 210) 50%, rgb(195, 214, 221) 100%);
 	border-radius: 5px;
 }
+
 
 .login-form h4 {
 	color: #000000d1;
@@ -500,67 +512,6 @@ input {
 /* -------------- */
 /* FIN CSS BULLES */
 /* -------------- */
-
-/* --- */
-
-/* --------------- */
-/* CSS pour la map */
-/* --------------- */
-
-.ui-widget-content {
-	width: 130px;
-	height: 100px;
-	padding: 0.5em;
-	float: left;
-	margin: 10px 10px 10px 0;
-	background-color: #ccffcc;
-}
-
-#droppable {
-	width: 100;
-	height: 150px;
-	padding: 0.5em;
-	float: left;
-	margin: 10px;
-}
-
-#mapid {
-	height: 100vh;
-}
-
-.overlay {
-	z-index: 1000;
-	background: whitesmoke;
-	box-shadow: 0 0 15px 0 black;
-}
-
-.mylocation {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translate(-50%, 10%);
-    -webkit-border-radius: 7;
-    -moz-border-radius: 7;
-    border-radius: 7px;
-    font-family: Arial;
-    color: #1f628d;
-    font-size: 30px;
-    background: #ffffff;
-    padding: 10px 20px 10px 20px;
-    border: solid #1f628d 2px;
-    text-decoration: none;
-}
-
-.mylocation:hover {
-    background: #1f628d;
-    text-decoration: none;
-    color: #ffffff;
-    border: none;
-}
-
-/* ----------- */
-/* FIN CSS Map */
-/* ----------- */
 
 /* --- */
 

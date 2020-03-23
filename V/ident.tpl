@@ -12,8 +12,7 @@
 		<link rel="icon" type="image/png" href="./V/img/crous-finder-icon.png"/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-		<link rel="stylesheet" href="./V/style/style.css">
-		<link rel="stylesheet" href="./V/style/background.css">
+		<link rel="stylesheet" href="./V/style/ident.css">
 		<link rel="stylesheet" type="text/css" href="./V/fonts/iconic/css/material-design-iconic-font.min.css"/>
 		
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
@@ -56,7 +55,7 @@
 		
 				<div class="row">
 
-					<div class="col-lg-5 login-form login-form-user">
+					<div class="col-md-5 login-form login-form-user">
 				
 						<p>
 						
@@ -81,7 +80,7 @@
 							<div class="input-log-in input-log-in-valid">
 
 								<input type="text" name='login' class="champ" required>
-								<span class="active-input" data-placeholder="Nom"></span>
+								<span class="active-input" data-placeholder="Login"></span>
 							
 							</div>
 							
@@ -119,7 +118,7 @@
 						</form>
 
 					</div>
-
+					
 					<div class="col-lg-5 offset-1 login-form login-form-user">
 				
 						<p>

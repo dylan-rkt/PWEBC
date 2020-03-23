@@ -1,6 +1,5 @@
 <?php
 
-function afficher()
-{
+function afficher() {
     require("./V/map.tpl");
 }

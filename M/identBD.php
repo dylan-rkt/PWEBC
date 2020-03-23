@@ -22,7 +22,7 @@
 			return true;
 		}
 	}
-	
+
 	function create_ident($nom,$prenom,$login,$pass,&$profil) {
 		require('./M/connectBD.php'); 
 		$sql = "SELECT * FROM utilisateur WHERE login = :login";
@@ -56,4 +56,5 @@
 			return $bool;
 		}
 	}
+	
 ?>

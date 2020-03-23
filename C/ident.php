@@ -24,6 +24,7 @@
 		}
 	}
 
+	
 	function creation(){
 		$msg_ident = '';
 		$msg_create = '';
