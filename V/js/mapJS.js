@@ -1,5 +1,5 @@
 window.onload = function () {
-	alert("N'oubliez pas d'activer la geolocalisation !")
+	alert("Si vous n'activez pas la géolocalisation, la position par défaut sera l'IUT Paris Descartes !")
 	//Chargement initial de la MAP
 
 	var map = L.map('mapid').setView([48.798801, 2.16592], 10);
