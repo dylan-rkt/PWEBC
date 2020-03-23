@@ -92,20 +92,17 @@ window.onload = function () {
 
 	function currentLocation() {
 		var defaultLocation = ["48.798801","2.16592"];
-		
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition((function(position) {
 				L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
 				coordsGPS[0] = position.coords.latitude;
 				coordsGPS[1] = position.coords.longitude;
-			}));
-		} 
-		else {
-			alert("Votre géolocalisation est désactivé ! \n" + 
-			"L'IUT Paris Descartes sera donc votre pseudo localisation.")
-			L.marker([defaultLocation[0],defaultLocation[1]]).addTo(map);
-			coordsGPS[0] = defaultLocation[0];
-			coordsGPS[1] = defaultLocation[1];
+			}),function(error){
+				alert("Votre géolocalisation est désactivé ! \n" + 
+				"L'IUT Paris Descartes sera donc votre pseudo localisation.")
+				L.marker([defaultLocation[0],defaultLocation[1]]).addTo(map);
+				coordsGPS[0] = defaultLocation[0];
+				coordsGPS[1] = defaultLocation[1];});
 		}
 	}
 
