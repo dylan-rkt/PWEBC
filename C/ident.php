@@ -32,7 +32,6 @@
 		$_SESSION['profil_utilisateur'] = '';
 		$nom =  isset($_POST['nom']) ? ($_POST['nom']) : '';
 		$prenom =  isset($_POST['prenom']) ? ($_POST['prenom']) : '';
-		var_dump($nom);
 		$login =  isset($_POST['login']) ? ($_POST['login']) : '';
 		$pass =  isset($_POST['password']) ? ($_POST['password']) : '';
 		if (count($_POST) == 0) {
