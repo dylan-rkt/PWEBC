@@ -1,4 +1,25 @@
-(function ($) {
+// Fonction permettant de faire basculer d'un formulaire à un autre
+// En faisant apparaitre le formulaire auquel on souhaite accéder
+// Et en faisant disparaitre l'autre avec des "fondus"
+$(function() {
+    $('#form-log-tie').click(function(e) {
+		$("#form-log").delay(200).fadeIn(200);
+ 		$("#form-reg").fadeOut(200);
+		$('#form-reg-tie').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+	
+	$('#form-reg-tie').click(function(e) {
+		$("#form-reg").delay(200).fadeIn(200);
+ 		$("#form-log").fadeOut(200);
+		$('#form-log-tie').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+});
+
+(function($) {
     $('.champ').each(function(){
         $(this).on('blur', function(){
             if ($(this).val().trim() != "") { // S'il y a eu une entrée clavier dans un input
@@ -26,5 +47,7 @@
             showingpwd = 0;
         }
     });
-	
 })(jQuery);
+
+
+

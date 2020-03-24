@@ -6,7 +6,7 @@
 		<title>Crous'Finder</title>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<meta name="author" content="Julien ZHANG, Dylan RAKOTOARIVELO - Groupe 201" />
+		<meta name="author" content="Julien ZHANG, Dylan RAKOTOARIVELO - Groupe 201"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 			
 		<link rel="icon" type="image/png" href="./V/img/crous-finder-icon.png"/>
@@ -24,6 +24,8 @@
 	</head>
 
 	<body>
+	
+		<div class="cursor"></div>
 
 		<header>
 
@@ -39,7 +41,7 @@
 				
 					<li class="nav-item">
 					
-						<a class="nav-link" href="#">100% fiable</a>
+						<a class="nav-link" href="#">Service 100% fiable</a>
 						
 					</li>
 					
@@ -71,53 +73,65 @@
 
 					<br/>
 					
-					<div class="forms">
-
-						<!-- <h4>Veuillez vous identifier</h4> -->
+					<div class="login-block">
 					
-						<div class="head">
-							<div></div>
-							<a id="login" class="selected style" href="#login">Se connecter</a>
-							<a id="register" href="#register">Créer un compte</a>
-							<div></div>
+						<div class="header-login-block">
+						
+							<div class="line space-1">
+							
+								<a href="#" class="active" id="form-log-tie">Se connecter</a>
+								
+							</div>
+							
+							<div class="line space-2">
+							
+								<a href="#" id="form-reg-tie">Créer un compte</a>
+								
+							</div>
+							
+							<hr>
+							
 						</div>
 
-						<div class="tabs">
+						<div class="main-content">
 						
-							<form id="identification" class="log-in log-in-valid offset-1 col-10" action="index.php?controle=ident&action=identification" method="post">
+							<form id="form-log" class="log-in log-in-valid offset-1 col-10" action="index.php?controle=ident&action=identification" method="post" style="display: block;">
 
 								<h4>Veuillez vous identifier</h4>
 								
 								<br/>
 							
-								<div class="input-log-in input-log-in-valid">
+								<div class="input-log-in input-log-in-valid form-group">
 
-									<input type="text" name='login' class="champ" required>
-									<span class="active-input" data-placeholder="Login"></span>
+									<input type="text" name="login" tabindex="1" class="champ" required>
+									
+									<span class="active-input" data-placeholder="Nom de login"></span>
 								
 								</div>
 								
-								<div class="input-log-in input-log-in-valid">
+								<div class="input-log-in input-log-in-valid form-group">
 								
 									<span class="show-password">
+									
 										<i class="zmdi zmdi-eye"></i>
+									
 									</span>
 
-									<input type="password" name='password' class="champ" required>
+									<input type="password" name="password" tabindex="2" class="champ" required>
+									
 									<span class="active-input" data-placeholder="Mot de passe"></span>
 								
 								</div>
 								
-
-								<div class="form-group">
+								<div class="form-group bouton">
 								
-									<button class="btn btn-success btn-primary btnSubmit" type="submit">Se connecter</button>
+									<button class="btn btn-success btn-primary btnSubmit" tabindex="4" type="submit">Se connecter</button>
 								
 								</div>
 								
 								<div id="block-lock"></div>
 								
-								<div class="lds-ring">
+								<div class="loader">
 								
 									<div></div>
 									<div></div>
@@ -127,66 +141,58 @@
 								</div>
 								
 								<p class="echec"><?php echo $msg_ident ?></p>
+								
+								<p class="echec"><?php echo $msg_create ?></p>
 
 							</form>
 						
-				
+							<form id="form-reg" class="log-in log-in-valid offset-1 col-10" action="index.php?controle=ident&action=creation" method="post" style="display: none;">
+
+								<h5 class="txt">Nouveau sur le site ? Créez un compte !</h5>
 							
-							<form id="identification" class="log-in log-in-valid offset-1 col-10" action="index.php?controle=ident&action=creation" method="post">
+								<div class="input-log-in input-log-in-valid form-group">
 
-								<h4>Nouveau sur le site ?</h4>
-							
-								<div class="input-log-in input-log-in-valid">
-
-									<input type="text" name='nom' class="champ" required>
-									<span class="active-input" data-placeholder="Nom"></span>
+									<input type="text" name='nom' class="champ" tabindex="1" pattern=".{3,}" title="Au moins 3 caractères minimum requis" required>
+									
+									<span class="active-input" data-placeholder="Votre nom"></span>
 								
 								</div>
 
-								<div class="input-log-in input-log-in-valid">
+								<div class="input-log-in input-log-in-valid form-group">
 
-									<input type="text" name='prenom' class="champ" required>
-									<span class="active-input" data-placeholder="Prenom"></span>
+									<input type="text" name='prenom' class="champ" tabindex="1" pattern=".{3,}" title="Au moins 3 caractères minimum requis" required>
+									
+									<span class="active-input" data-placeholder="Votre prénom"></span>
 								
 								</div>
 
-								<div class="input-log-in input-log-in-valid">
+								<div class="input-log-in input-log-in-valid form-group">
 
-									<input type="text" name='login' class="champ" required>
-									<span class="active-input" data-placeholder="Login"></span>
+									<input type="text" name='login' class="champ" tabindex="2" pattern=".{3,}" title="Au moins 3 caractères minimum requis" required>
+									
+									<span class="active-input" data-placeholder="Nom de login"></span>
 								
 								</div>
 								
-								<div class="input-log-in input-log-in-valid">
+								<div class="input-log-in input-log-in-valid form-group">
 								
 									<span class="show-password">
+										
 										<i class="zmdi zmdi-eye"></i>
+									
 									</span>
 
-									<input type="password" name='password' class="champ" required>
+									<input type="password" name='password' class="champ" tabindex="2" pattern=".{6,}" title="Le mot de passe doit contenir au moins 6 caractères" required>
+									
 									<span class="active-input" data-placeholder="Mot de passe"></span>
 								
 								</div>
 								
-
-								<div class="form-group">
+								<div class="form-group bouton">
 								
-									<button class="btn btn-success btn-primary btnSubmit" type="submit">S'enregistrer</button>
+									<button class="btn btn-success btn-primary btnSubmit form-group" tabindex="4" type="submit">S'enregistrer</button>
 								
 								</div>
-								
-								<div id="block-lock"></div>
-								
-								<div class="lds-ring">
-								
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									
-								</div>
-								
-								<p class="echec"><?php echo $msg_create ?></p>
 
 							</form>
 							
@@ -215,30 +221,13 @@
 			
 		</div>
 		
-		<script>
-		$(window).on("hashchange", function(){
-	if(location.hash.slice(1)=="register"){
-		$(".forms").addClass("extend");
-		$("#login").removeClass("selected");
-		$("#register").addClass("selected");
-	} else {
-		$(".forms").removeClass("extend");
-		$("#login").addClass("selected");
-		$("#register").removeClass("selected");
-	}
-});
-$(window).trigger("hashchange");
-
-		
-		</script>
-		
 		<script type="text/javascript" src="./V/js/animation.js"></script>
 		
 		<script type="text/javascript" src="./V/js/ident.js"></script>
 		
-		<script src="./V/js/jquery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="./V/js/jquery/jquery-3.2.1.min.js"></script>
 
-		<script src="./V/js/form.js"></script>
+		<script type="text/javascript" src="./V/js/form.js"></script>
 
 	</body>
 

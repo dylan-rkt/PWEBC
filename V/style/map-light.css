@@ -86,6 +86,7 @@ body {
 
 #mapid {
 	height: 100vh;
+	cursor: crosshair;
 }
 
 .leaflet-tile {

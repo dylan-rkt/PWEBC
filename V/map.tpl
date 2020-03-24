@@ -53,7 +53,7 @@
 					<select id="graph">
 					
 						<option value="voiture">voiture</option>
-						<option value="pieton">piéton</option>
+						<option value="pieton">à pied</option>
 						
 					</select>
 					
