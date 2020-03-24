@@ -1,7 +1,7 @@
 window.onload = function () {
 	alert("Si vous n'activez pas la géolocalisation, la position par défaut sera l'IUT Paris Descartes !")
+	
 	//Chargement initial de la MAP
-
 	var map = L.map('mapid').setView([48.798801, 2.16592], 10);
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -13,13 +13,15 @@ window.onload = function () {
 	var coordsGPS = new Array();
 	currentLocation();
 
+	//Lors d'un clic sur afficher les lieux de restaurations des crous
+	//On charge le JSON sur la map
 	$("#afficher").click(function () {
 		$.ajax({
 			url: "./V/js/fr_crous_restauration_france_entiere.geojson",
 			dataType: "json",
 			success: function (data) {
 				L.geoJson(data, {
-					pointToLayer: function (feature, latlng) {
+					pointToLayer: function (feature, latlng) { //Chargement des icones en fonction du type crous
 						var smallIcon;
 						if(feature.properties.type == "Restaurant") {
 							smallIcon = L.icon({
@@ -65,7 +67,7 @@ window.onload = function () {
 						}
 						return L.marker(latlng, {icon: smallIcon});
 
-					}, onEachFeature: function (feature, layer) {
+					}, onEachFeature: function (feature, layer) { //Bulle d'infos pour chaque lieu (s'affiche lors d'un clic sur l'icone appropriée)
 						layer.bindPopup(
 							"<input type='hidden' name='long' value=" + feature.geometry.coordinates[0] + " />" +
 							"<input type='hidden' name='lat' value=" + feature.geometry.coordinates[1] + " />" +
@@ -84,12 +86,17 @@ window.onload = function () {
 		});
 	});
 	
+	//Lors d'un clic sur l'icone d'un lieu, on récupère ses coordonnées
+	//et on affiche l'itinéraire de la position actuelle au lieu
 	map.on('popupopen', function (e) {
 		coordsGPS[2] = e.popup._source.feature.geometry.coordinates[1];
 		coordsGPS[3] = e.popup._source.feature.geometry.coordinates[0];
 		go(coordsGPS[0], coordsGPS[1], coordsGPS[2], coordsGPS[3]);
 	});
 
+	//Récupérer la position actuelle de l'utilisateur
+	//Si autorisation geolocalisation, épingle sur sa position
+	//Sinon épingle sur position IUT
 	function currentLocation() {
 		var defaultLocation = ["48.798801","2.16592"];
 		if (navigator.geolocation) {
@@ -106,35 +113,34 @@ window.onload = function () {
 		}
 	}
 
-	var graph = "Voiture";
-	
+	var graph = "Voiture"; //Valeur du moyen de transport par défaut	
+
 	$("select#graph").change(function(){
 		graph = $(this).children("option:selected").val();
     });
 
 	var route;
-	
+
+	//Afficher l'itinéraire
 	function go(lat1,lon1,lat3,lon3) {
 		var info = $("#info");
-		
 		if (route != null) {
 			route.remove();
 		}
-		
 		try {
 			Gp.Services.route({
-				startPoint: {
+				startPoint: { //position actuelle
 					x: lon1,
 					y: lat1
 				},
-				endPoint: {
+				endPoint: { //lieu de restauration
 					x: lon3,
 					y: lat3
 				},
-				graph: graph,
+				graph: graph, //moyen de transport
 				routePreference: "fastest",
 				apiKey: "jhyvi0fgmnuxvfv0zjzorvdn",
-				onSuccess: function(result) {
+				onSuccess: function(result) { //Afficher résultats (Distance/Temps)
 					var json = JSON.stringify(result);
 					var obj = JSON.parse(json);
 					var distance = obj.totalDistance;

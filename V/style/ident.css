@@ -2,18 +2,13 @@ body {
 	background: linear-gradient(90deg, #013896, #ffffff, #cf142b);
 }
 
-#desc {
-	font-size: 20px;
-}
-
-.image {
-	width: 100%;
-	object-fit: cover;
-}
-
 /* ------------- */
 /* CSS du header */
 /* ------------- */
+
+nav {
+    background: linear-gradient(90deg, rgb(149, 148, 120) 0%, rgb(170, 189, 202) 0%, rgb(226, 235, 225) 47%, rgb(223, 195, 181) 79%);
+}
 
 .navbar {
 	display: flex;
@@ -61,10 +56,6 @@ body {
 	width: 105px;
 }
 
-nav {
-    background: linear-gradient(90deg, rgb(149, 148, 120) 0%, rgb(170, 189, 202) 0%, rgb(226, 235, 225) 47%, rgb(223, 195, 181) 79%);
-}
-
 .nav-item {
 	margin: 20px;
 }
@@ -80,13 +71,6 @@ nav {
 /* ----------------- */
 
 /* --- */
-
-.background {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
 
 .background p {
 	margin-top: 0;
@@ -122,6 +106,10 @@ nav {
 	line-height: 1em;
 }
 
+.letter::selection {
+	color: #232af1cc;
+}
+
 /* --------------- */
 /* FIN CSS LETTRES */
 /* --------------- */
@@ -133,47 +121,82 @@ nav {
 /* ----------------- */
 
 .login-container {
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 7vh;
+    margin-bottom: 12vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-container form {
+    padding: 2% 10% 0% 10%;
 }
 
 .login-form {
     padding-top: 5%;
     padding-bottom: 5%;
-    padding-right: 1%;
-    padding-left: 1%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 	z-index: 2;
 	background: linear-gradient(90deg, rgb(204, 204, 196) 0%, rgb(200, 218, 225) 0%, rgb(224, 227, 210) 50%, rgb(195, 214, 221) 100%);
 	border-radius: 5px;
 }
 
-
-.login-form h4 {
+.login-form h4, .login-form h5 {
 	color: #000000d1;
 	text-align: center;
 }
 
-.letter::selection {
-	color: #232af1cc;
+.header-login-block {
+	text-align: center;
 }
 
-h4::selection {
+.header-login-block a {
+	text-decoration: none;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+	color: rgb(140,140,140);
+}
+
+.header-login-block hr {
+	width: 80%;
+	margin-top: 5px;
+	border: 0;
+	height: 2px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+}
+
+.header-login-block a.active{
+	color: rgb(59, 87, 158);
+}
+
+.line {
+	display: inline-flex;
+	padding-bottom: 15px;
+	font-weight: 500;
+}
+
+.space-1 {
+	margin-right: 50px;
+}
+
+.space-2 {
+	margin-left: 50px;
+}
+
+.txt {
+	margin-bottom: 30px;
+}
+
+h4::selection, h5::selection {
 	color: #fb0909db;
 }
 
-.login-form-user h3 {
-    color: #71662d;
-}
-
-.login-container form {
-    padding: 5% 10% 0% 10%;
-}
-
 .form-group {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	width: 100%;
+}
+
+.bouton {
+	text-align: center;
 }
 
 .btnSubmit {
@@ -182,10 +205,8 @@ h4::selection {
 	padding: 1.5%;
 	border: none;
 	transition: 0.2s;
-}
-
-.btnSubmit:hover {
-	background-color: black;
+	color: black;
+    background-color: white;
 }
 
 .btn-success:active {
@@ -199,22 +220,13 @@ h4::selection {
 
 .btn-success:hover {
 	background-color: #cedddc !important;
+	color: black;
 }
 
 .btn-success:focus {
 	box-shadow: 0 0 0 0.2rem rgba(150, 179, 157, 0.5) !important;
-}
-
-.login-form-user .btnSubmit {
-    color: black;
-    background-color: white;
-}
-
-.column {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	background-color: #bbc9c8 !important;
+	color: black;
 }
 
 #block-lock {
@@ -227,10 +239,10 @@ h4::selection {
 	right: 0;
 	bottom: 0;
 	border-radius: inherit;
-	height: 250px;
+	height: 300px;
 }
 
-.lds-ring {
+.loader {
 	display: none;
 	position: absolute;
 	width: 80px;
@@ -241,7 +253,7 @@ h4::selection {
 	transform: translate(-50%, -50%);
 }
 
-.lds-ring div {
+.loader div {
 	box-sizing: border-box;
 	display: block;
 	position: absolute;
@@ -250,19 +262,19 @@ h4::selection {
 	margin: 8px;
 	border: 8px solid #fff;
 	border-radius: 50%;
-	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	animation: loadcircle 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 	border-color: #fff transparent transparent transparent;
 }
 
-.lds-ring div:nth-child(1) {
+.loader div:nth-child(1) {
 	animation-delay: -0.45s;
 }
 
-.lds-ring div:nth-child(2) {
+.loader div:nth-child(2) {
 	animation-delay: -0.3s;
 }
 
-.lds-ring div:nth-child(3) {
+.loader div:nth-child(3) {
 	animation-delay: -0.15s;
 }
 
@@ -271,7 +283,7 @@ h4::selection {
 }
 
 /* keyframe pour effectuer un effet de loading */
-@keyframes lds-ring {
+@keyframes loadcircle {
 	0% {
 		transform: rotate(0deg);
 	}
@@ -370,10 +382,6 @@ input {
 	padding-right: 5px;
 	cursor: pointer;
 	transition: all 0.4s;
-}
-
-.input-log-in-valid {
-	position: relative;
 }
 
 /* --------------------- */
@@ -534,8 +542,8 @@ input {
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-	background: -webkit-linear-gradient(to bottom, #A5FECB, #20BDFF, #a3dcd0);
-	background: linear-gradient(to bottom, #A5FECB, #20BDFF, #a3dcd0);
+	background: -webkit-linear-gradient(90deg, #013896, #ffffff, #cf142b);
+	background: linear-gradient(90deg, #013896, #ffffff, #cf142b);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
@@ -546,3 +554,53 @@ input {
 /* ----------------- */
 /* FIN CSS SCROLLBAR */
 /* ----------------- */
+
+/* --- */
+
+/* ------------------------ */
+/* CSS curseur personnalisé */
+/* ------------------------ */
+
+.cursor {
+	position: absolute;
+    width: 20px;
+    height: 20px;
+	z-index: 3;
+	border: 1px solid white;
+    animation: animated-cursor1 .5s infinite alternate;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.cursor-clicked {
+    animation: animated-cursor2 .5s forwards;
+}
+
+@keyframes animated-cursor1 {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.7);
+    }
+}
+
+@keyframes animated-cursor2 {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(3);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* ----------------- */
+/* FIN CSS curseur */
+/* ----------------- */
+
+/* FIN CSS */
+/* ------- */
